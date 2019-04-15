@@ -1,0 +1,58 @@
+.row.title
+  .s12.m4
+    .card
+      .card-content
+        %p 食事管理登録
+.row
+  .s12.m7
+    .card
+      .card-content.main
+        %ul.collection 
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 1.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 2.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 3.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 4.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 5.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+          .form.collection-item
+            = form_for [@log] do |f|
+              %h5 6.
+              = f.text_field :name,placeholder: '    food'
+              = f.text_field :protein,placeholder: '    protein(g)'
+              = f.text_field :fat,placeholder: '    fat(g)'
+              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'

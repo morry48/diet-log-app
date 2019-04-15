@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title DietLogApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %ul#dropdown1.dropdown-content
+      %li
+        %a{:href => "#!"} one
+      %li
+        %a{:href => "#!"} two
+      %li.divider
+      %li
+        %a{:href => "#!"} three
+    %nav.grey.darken-4{:class => "#212121"}
+      .nav-wrapper
+        %a.brand-logo.right{:href => "/logs"} Diet log val
+        %ul#nav-mobile.left.hide-on-med-and-down
+          %li
+            =link_to '食事管理登録',  new_log_path, method: :get
+          %li
+            =link_to '目標カロリー算出', "#"
+          %li
+            =link_to 'ユーザー登録',  "#"
+          %li
+            =link_to 'ユーザー登録',  "#"
+    = yield
+    / JavaScript at end of body for optimized loading
