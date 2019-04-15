@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root  'log#index'
+  root 'logs#index'
+  resources :logs
 end
