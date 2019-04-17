@@ -1,4 +1,13 @@
+ /*
+  *= require simple_calendar
+  */
+
  @import './reset';
  @import 'materialize';
  @import "modules/logs-new";
  @import "modules/logs-index";
+
+ .datetime select {
+  display: inline-flex;
+  width: auto;
+}
