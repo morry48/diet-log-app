@@ -10,17 +10,11 @@
         %ul.collection 
           .form.collection-item
             = form_for [@log] do |f|
-              = f.label :食品名
+              %h 1.
               = f.text_field :name,placeholder: '    food'
-              = f.label :タンパク質
               = f.text_field :protein,placeholder: '    protein(g)'
-              = f.label :脂質
               = f.text_field :fat,placeholder: '    fat(g)'
-              = f.label :炭水化物
               = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
               .datetime
                 = f.datetime_select :start_time, class:"datepicker"
-                = f.submit '登録フォーム追加', class: 'form__add waves-effect waves-light btn'
-              %br
-              %br
               = f.submit '登録', class: 'form__submit waves-effect waves-light btn'

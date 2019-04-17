@@ -2,7 +2,7 @@
   .s12.m4
     .card
       .card-content
-        %p 食事管理登録
+        %p 食事管理編集
 .row
   .s12.m7
     .card
@@ -20,7 +20,5 @@
               = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
               .datetime
                 = f.datetime_select :start_time, class:"datepicker"
-                = f.submit '登録フォーム追加', class: 'form__add waves-effect waves-light btn'
-              %br
-              %br
-              = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+              = f.submit '編集', class: 'form__submit waves-effect waves-light btn'
+              = link_to '削除', "/logs/#{@log.id}", method: :delete, class:'waves-effect waves-light btn'

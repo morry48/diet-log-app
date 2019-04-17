@@ -1,0 +1,49 @@
+- path = "#{request.fullpath}"
+- sum_this_month_calory = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
+- sum_today_calory  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
+- sum_month_calory = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
+- params[:start_date]||= Date.today.strftime('%Y-%m-%d')
+- count_month_days =  Date.parse(params[:start_date]).end_of_month.day
+%p #{path.delete("/?start_date=").gsub(/(.{3})$/, '')}
+
+
+
+.row.title
+  .card
+    .card-content
+      =link_to '月カレンダー', root_path,  method: :get,  class:'waves-effect waves-light btn'
+      = week_calendar events: @logs do |date, logs|
+        = link_to date.day
+        %br
+        = "<食事一覧>"
+        - logs.each do |log|
+          %div
+            = link_to log.name, log
+        -if path == "/logs/week_index"
+          .bottom-content
+            %p
+              = "<PFCバランス>" 
+            %p
+              = "P #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumprotein.to_i}g"
+            %p
+              = "F #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumfat.to_i}g"
+            %p
+              = "C #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumcarbohydrate.to_i}g"
+            %p
+              = "<daily>"
+            %p
+              = "#{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
+        -else  
+          .bottom-content
+            %p
+              = "<PFCバランス>" 
+            %p
+              = "P #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumprotein.to_i}g"
+            %P
+              = "F #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumfat.to_i}g"
+            %P
+              = "C #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumcarbohydrate.to_i}g"
+            %p
+              = "<daily>"
+            %p
+              = "#{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
