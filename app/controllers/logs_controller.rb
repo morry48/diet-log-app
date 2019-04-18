@@ -16,7 +16,7 @@ class LogsController < ApplicationController
     if @log.save
       redirect_to new_log_path ,notice: '食事管理登録をしました'
     else
-      flash.now[:alert] = '食事情報を入力してください'
+      flash.now[:notice] = '食事情報を入力してください'
       render :new
     end
   end
@@ -29,18 +29,20 @@ class LogsController < ApplicationController
     @log=Log.find(params[:id])
   end
 
+  def intro_app
+  end
 
 
   def update
     log = Log.find(params[:id])
     log.update(log_params)
-    redirect_to edit_log_path ,notice: '食事管理情報を削除しました。'
+    redirect_to edit_log_path ,notice: '食事管理情報を編集しました'
   end
 
   def destroy
     log = Log.find(params[:id])
     log.destroy
-    redirect_to root_path ,notice: '食事管理情報を削除しました。'
+    redirect_to root_path ,notice: '食事管理情報を削除しました'
   end
 
   private

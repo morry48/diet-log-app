@@ -27,6 +27,9 @@
           %li
             =link_to 'ユーザー登録',  "#"
           %li
-            =link_to 'ユーザー登録',  "#"
+            =link_to 'イントロダクション',  intro_app_logs_path, method: :get
+    - flash.each do |key, value|
+      = content_tag(:div, value, class: "#{key}")    
     = yield
     / JavaScript at end of body for optimized loading
+
