@@ -4,19 +4,18 @@
 - sum_month_calory = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
 - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
 - count_month_days =  Date.parse(params[:start_date]).end_of_month.day
+- calorie_parameter = (100*(sum_this_month_calory - sum_today_calory.to_f) / (2120*(Time.now.day-1).to_f)).to_i
 
 
 .row.title
   .s12.m4
     .card
       .card-content
-        %p 
+        %p
           あなたの目標摂取カロリー　2,120 kcal/日
         %p
           あなたの設定PFCバランス　P140g  F40g  C280g
-        %p
-          進捗達成率(kcal)
-          = (2120*100*(Time.now.day-1).to_f / (sum_this_month_calory - sum_today_calory).to_f).to_i.to_s + "%"
+        
           -if Date.today.strftime('%d') == 01
             %p 
               今日の摂取カロリー   
@@ -25,10 +24,25 @@
             -if is_this_month(params[:start_date]) || path == "/logs"
               %p
                 今月の平均摂取カロリー
-                =  ((sum_this_month_calory - sum_today_calory)/(Time.now.day-1)).to_s + "kcal/日"
+                -if (sum_this_month_calory - sum_today_calory)/(Time.now.day-1) >2120
+                  %span.red-text
+                    =  ((sum_this_month_calory - sum_today_calory)/(Time.now.day-1)).to_s + "kcal/日"
+                -else
+                  =  ((sum_this_month_calory - sum_today_calory)/(Time.now.day-1)).to_s + "kcal/日"
               %p
                 今日の合計摂取カロリー
-                =   (sum_today_calory).to_s + "kcal"
+                -if sum_today_calory > 2120
+                  %span.red-text
+                    =(sum_today_calory).to_s + "kcal"
+                -else
+                  =(sum_today_calory).to_s + "kcal"
+              %p
+                バロメーター(kcal)
+                -if calorie_parameter > 100
+                  %span.red-text
+                    = "#{calorie_parameter}" + "%"
+                -else
+                  = "#{calorie_parameter}" +"%"
             -else
               %p 平均摂取カロリー      #{ sum_month_calory / Date.parse(params[:start_date]).end_of_month.day}kcal/日
 .row.title
@@ -45,19 +59,28 @@
               = link_to log.name, edit_log_path(log)
           .bottom-content
             - if is_this_month(params[:start_date]) || path == "/logs"
-              = "<daily>"
+              = "<カロリー>"
               %br
-              = "#{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
+              - if  Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i > 2120
+                %span.red-text 
+                  = "#{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
+                  %br
+              - else
+                = "#{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
               %br
-              = "体重65kg"
+              %span
+              = "<体重>"
+              %br
+              = "65kg"
             - else
               %br
+                %span
+                  ="<カロリー>"
+                %br
                 = "#{Log.where('start_time LIKE(?)',"#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
                 %br
-                = "体重65kg"
-                format('%04d', 10)
-
-
-%p
-  = "#{Time.now.day-1}"
+                = "<体重>"
+                %br
+                = "65kg"
+                  
             

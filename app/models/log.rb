@@ -1,4 +1,10 @@
 class Log < ApplicationRecord
+  validates :name, presence: true
+  validates :protein, presence: true
+  validates :carbohydrate, presence: true
+  validates :fat, presence: true
+
+
   def self.sumkcal 
     sum(:protein)*4 + sum(:carbohydrate)*4 + sum(:fat)*9 
   end
