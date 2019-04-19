@@ -1,10 +1,10 @@
 - path = "#{request.fullpath}"
-- sum_this_month_calory = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
-- sum_today_calory  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
-- sum_month_calory = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
+- sum_this_month_calorie = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
+- sum_today_calorie  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
+- sum_month_calorie = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
 - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
 - count_month_days =  Date.parse(params[:start_date]).end_of_month.day
-- calorie_parameter = (100*(sum_this_month_calory - sum_today_calory.to_f) / (2120*(Time.now.day-1).to_f)).to_i
+- calorie_parameter = (100*(sum_this_month_calorie - sum_today_calorie.to_f) / (2120*(Time.now.day-1).to_f)).to_i
 
 
 .row.title
@@ -19,23 +19,23 @@
           -if Date.today.strftime('%d') == 01
             %p 
               今日の摂取カロリー   
-              = (sum_today_calory).to_s + "kcal/日"
+              = (sum_today_calorie).to_s + "kcal/日"
           -else
             -if is_this_month(params[:start_date]) || path == "/logs"
               %p
                 今月の平均摂取カロリー
-                -if (sum_this_month_calory - sum_today_calory)/(Time.now.day-1) >2120
+                -if (sum_this_month_calorie - sum_today_calorie)/(Time.now.day-1) >2120
                   %span.red-text
-                    =  ((sum_this_month_calory - sum_today_calory)/(Time.now.day-1)).to_s + "kcal/日"
+                    =  ((sum_this_month_calorie - sum_today_calorie)/(Time.now.day-1)).to_s + "kcal/日"
                 -else
-                  =  ((sum_this_month_calory - sum_today_calory)/(Time.now.day-1)).to_s + "kcal/日"
+                  =  ((sum_this_month_calorie - sum_today_calorie)/(Time.now.day-1)).to_s + "kcal/日"
               %p
                 今日の合計摂取カロリー
-                -if sum_today_calory > 2120
+                -if sum_today_calorie > 2120
                   %span.red-text
-                    =(sum_today_calory).to_s + "kcal"
+                    =(sum_today_calorie).to_s + "kcal"
                 -else
-                  =(sum_today_calory).to_s + "kcal"
+                  =(sum_today_calorie).to_s + "kcal"
               %p
                 バロメーター(kcal)
                 -if calorie_parameter > 100

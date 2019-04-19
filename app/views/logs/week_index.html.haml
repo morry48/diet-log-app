@@ -1,7 +1,7 @@
 - path = "#{request.fullpath}"
-- sum_this_month_calory = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
-- sum_today_calory  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
-- sum_month_calory = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
+- sum_this_month_calorie = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
+- sum_today_calorie  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
+- sum_month_calorie = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
 - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
 - count_month_days =  Date.parse(params[:start_date]).end_of_month.day
 
