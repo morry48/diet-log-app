@@ -8,26 +8,31 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %ul#dropdown1.dropdown-content
-      %li
-        %a{:href => "#!"} one
-      %li
-        %a{:href => "#!"} two
-      %li.divider
-      %li
-        %a{:href => "#!"} three
-    %nav.grey.darken-4{:class => "#212121"}
-      .nav-wrapper
-        %a.brand-logo.right{:href => "/logs"} Diet log val
-        %ul#nav-mobile.left.hide-on-med-and-down
-          %li
-            =link_to '食事管理登録',  new_log_path, method: :get
-          %li
-            =link_to '管理一覧画面', logs_path, method: :get
-          %li
-            =link_to 'ユーザー登録',  "#"
-          %li
-            =link_to 'イントロダクション',  intro_app_logs_path, method: :get
+    - if user_signed_in?
+      %nav.grey.darken-4{:class => "#212121"}
+        .nav-wrapper
+          %a.brand-logo.right{:href => "/logs"} Diet log val
+          %ul#nav-mobile.left.hide-on-med-and-down
+            %li
+              =link_to 'イントロダクション',  intro_app_logs_path, method: :get
+            %li
+              =link_to '食事管理登録',  new_log_path, method: :get
+            %li
+              =link_to '管理一覧画面', logs_path, method: :get
+            %li
+              =link_to 'ログアウト',  destroy_user_session_path, method: :delete                   
+    - else
+      %nav.grey.darken-4{:class => "#212121"}
+        .nav-wrapper
+          %a.brand-logo.right{:href => "/logs"} Diet log val
+          %ul#nav-mobile.left.hide-on-med-and-down
+            %li
+              =link_to 'イントロダクション',  intro_app_logs_path, method: :get   
+            %li
+              =link_to 'ユーザー新規登録',  new_user_registration_path, method: :get
+            %li
+              =link_to 'ログイン',  user_session_path, method: :post                 
+    
     - flash.each do |key, value|
       = content_tag(:div, value, class: "#{key}")    
     = yield

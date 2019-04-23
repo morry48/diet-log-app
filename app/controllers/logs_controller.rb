@@ -1,4 +1,5 @@
 class LogsController < ApplicationController
+  before_action :authenticate_user!, except: [:intro_app]
   def index
     @logs =Log.all
   end
@@ -35,7 +36,7 @@ class LogsController < ApplicationController
 
   def update
     log = Log.find(params[:id])
-    log.update(log_params)
+    log.update(log_params)     if log.user_id==current_user.id
     redirect_to edit_log_path ,notice: '食事管理情報を編集しました'
   end
 
@@ -47,6 +48,6 @@ class LogsController < ApplicationController
 
   private
   def log_params
-    params.require(:log).permit(:name,:protein,:fat,:carbohydrate,:start_time)
+    params.require(:log).permit(:name,:protein,:fat,:carbohydrate,:start_time).merge(user_id: current_user.id)
   end
 end

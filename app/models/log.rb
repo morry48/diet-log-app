@@ -3,6 +3,7 @@ class Log < ApplicationRecord
   validates :protein, presence: true
   validates :carbohydrate, presence: true
   validates :fat, presence: true
+  belongs_to :user
 
 
   def self.sumkcal 
