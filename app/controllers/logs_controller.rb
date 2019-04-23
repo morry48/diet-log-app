@@ -1,11 +1,24 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!, except: [:intro_app]
   def index
-    @logs =Log.all
+    @logs =current_user.logs
+    @sum_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
+    @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
+    -path = "#{request.fullpath}"
+    @sum_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
+    - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
+    @count_month_days =  Date.parse(params[:start_date]).end_of_month.day
+    @calorie_parameter = (100*(@sum_this_month_calorie - @sum_today_calorie.to_f) / (2120*(Time.now.day-1).to_f)).to_i
   end
 
   def week_index
-    @logs=Log.all
+    @logs =current_user.logs
+    @um_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
+    @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
+    -path = "#{request.fullpath}"
+    @sum_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
+    -params[:start_date]||= Date.today.strftime('%Y-%m-%d')
+    @count_month_days =  Date.parse(params[:start_date]).end_of_month.day
   end
 
   def new

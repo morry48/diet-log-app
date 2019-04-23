@@ -18,7 +18,11 @@
             %li
               =link_to '食事管理登録',  new_log_path, method: :get
             %li
-              =link_to '管理一覧画面', logs_path, method: :get
+              =link_to 'カレンダー', logs_path, method: :get
+            %li
+              =link_to 'ユーザー情報', user_path(current_user), method: :get
+            %li
+              =link_to '体重管理'
             %li
               =link_to 'ログアウト',  destroy_user_session_path, method: :delete                   
     - else

@@ -1,13 +1,4 @@
 - path = "#{request.fullpath}"
-- sum_this_month_calorie = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
-- sum_today_calorie  = Log.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
-- sum_month_calorie = Log.where('start_time LIKE(?)', "#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
-- params[:start_date]||= Date.today.strftime('%Y-%m-%d')
-- count_month_days =  Date.parse(params[:start_date]).end_of_month.day
-
-
-
-
 .row.title
   .card
     .card-content
@@ -19,33 +10,36 @@
         - logs.each do |log|
           %div
             = link_to log.name, log
+        -# カレンダーの日付を用いた変数の定義
+        - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%")
+        - sum_this_week_day_logs=Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%")
         -if path == "/logs/week_index"
           .bottom-content
             %p
               = "<PFCバランス>" 
             %p
-              = "P #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumprotein.to_i}g"
+              = "P #{sum_this_week_day_logs.sumprotein.to_i}g"
             %p
-              = "F #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumfat.to_i}g"
+              = "F #{sum_this_week_day_logs.sumfat.to_i}g"
             %p
-              = "C #{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumcarbohydrate.to_i}g"
+              = "C #{sum_this_week_day_logs.sumcarbohydrate.to_i}g"
             %p
               = "<daily>"
             %p
-              = "#{Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
+              = "#{sum_this_week_day_logs.sumkcal.to_i}kcal/日"
         -else  
           .bottom-content
             %p
               = "<PFCバランス>" 
             %p
-              = "P #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumprotein.to_i}g"
+              = "P #{sum_oneday_logs.sumprotein.to_i}g"
             %P
-              = "F #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumfat.to_i}g"
+              = "F #{sum_oneday_logs.sumfat.to_i}g"
             %P
-              = "C #{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumcarbohydrate.to_i}g"
+              = "C #{sum_oneday_logs.sumcarbohydrate.to_i}g"
             %p
               = "<daily>"
             %p
-              = "#{Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i}kcal/日"
+              = "#{sum_oneday_logs.sumkcal.to_i}kcal/日"
 
     
