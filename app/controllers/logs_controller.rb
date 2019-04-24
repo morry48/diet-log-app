@@ -9,6 +9,7 @@ class LogsController < ApplicationController
     - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
     @count_month_days =  Date.parse(params[:start_date]).end_of_month.day
     @calorie_parameter = (100*(@sum_this_month_calorie - @sum_today_calorie.to_f) / (2120*(Time.now.day-1).to_f)).to_i
+
   end
 
   def week_index

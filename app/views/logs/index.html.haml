@@ -53,9 +53,8 @@
               = "<カロリー>"
               %br
               -# カレンダーの日付を用いる変数の定義
-              - sum_this_month_day_calorie = current_user.logs.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i
-              - sum_past_month_day_calorie=current_user.logs.where('start_time LIKE(?)',"#{path.delete("/?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%").sumkcal.to_i
-              
+              - sum_this_month_day_calorie = current_user.logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
+              - sum_past_month_day_calorie=current_user.logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
               - if  sum_this_month_day_calorie  > 2120
                 %span.red-text 
                   = "#{sum_this_month_day_calorie}kcal/日"
@@ -66,7 +65,8 @@
               %span
               = "<体重>"
               %br
-              = "65kg"
+              -if (weights = current_user.user_wights.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+                = link_to "#{weights.last.wight}kg", edit_user_wight_path(weights.last.id)
             - else
               %br
                 %span
@@ -76,5 +76,6 @@
                 %br
                 = "<体重>"
                 %br
-                = "65kg"
+                -if (weights = current_user.user_wights.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+                  = link_to "#{weights.last.wight}kg", edit_user_wight_path(weights.last.id)
                     

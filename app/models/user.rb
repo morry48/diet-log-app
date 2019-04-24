@@ -9,5 +9,6 @@ class User < ApplicationRecord
   validates :nickname, presence: true
 
   has_many :logs
+  has_many :user_wights
   has_one_attached :avatar
 end
