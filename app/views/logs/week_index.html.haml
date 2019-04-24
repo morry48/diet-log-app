@@ -11,22 +11,26 @@
           %div
             = link_to log.name, log
         -# カレンダーの日付を用いた変数の定義
-        - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{path.delete("/logs/week_index?start_date=").gsub(/(.{3})$/, '')}-#{sprintf('%02d',date.day)}%")
-        - sum_this_week_day_logs=Log.where('start_time LIKE(?)',"#{Time.now.strftime('%Y-%m')}-#{sprintf('%02d',date.day)}%")
+        - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
         -if path == "/logs/week_index"
           .bottom-content
             %p
               = "<PFCバランス>" 
             %p
-              = "P #{sum_this_week_day_logs.sumprotein.to_i}g"
+              = "P #{sum_oneday_logs.sumprotein.to_i}g"
             %p
-              = "F #{sum_this_week_day_logs.sumfat.to_i}g"
+              = "F #{sum_oneday_logs.sumfat.to_i}g"
             %p
-              = "C #{sum_this_week_day_logs.sumcarbohydrate.to_i}g"
+              = "C #{sum_oneday_logs.sumcarbohydrate.to_i}g"
             %p
               = "<daily>"
             %p
-              = "#{sum_this_week_day_logs.sumkcal.to_i}kcal/日"
+              = "#{sum_oneday_logs.sumkcal.to_i}kcal/日"
+            %p
+              = "<体重>"
+              %br
+              -if (weights = current_user.user_wights.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+                = link_to "#{weights.last.wight}kg", edit_user_wight_path(weights.last.id)
         -else  
           .bottom-content
             %p
@@ -41,5 +45,10 @@
               = "<daily>"
             %p
               = "#{sum_oneday_logs.sumkcal.to_i}kcal/日"
+            %p
+              = "<体重>"
+              %br
+              -if (weights = current_user.user_wights.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+                = link_to "#{weights.last.wight}kg", edit_user_wight_path(weights.last.id)
 
     
