@@ -9,4 +9,5 @@ Rails.application.routes.draw do
       get 'intro_app'
     end
   end
+  resources :weight_logs
 end

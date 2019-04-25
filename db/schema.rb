@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2019_04_23_100235) do
+=======
+ActiveRecord::Schema.define(version: 2019_04_25_013809) do
+>>>>>>> Stashed changes
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +70,19 @@ ActiveRecord::Schema.define(version: 2019_04_23_100235) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weight_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "weight", null: false
+    t.datetime "start_time"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_weight_logs_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+<<<<<<< Updated upstream
   add_foreign_key "user_wights", "users"
+=======
+  add_foreign_key "weight_logs", "users"
+>>>>>>> Stashed changes
 end
