@@ -65,7 +65,7 @@
               = "<体重>"
               %br
               -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-                = link_to "#{weights.last.weight}kg", edit_user_wight_path(weights.last.id)
+                = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
             - else
               %br
                 %span
@@ -77,5 +77,5 @@
                 = "<体重>"
                 %br
                 -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-                  = link_to "#{weights.last.weight}kg", edit_user_wight_path(weights.last.id)
+                  = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
                     
