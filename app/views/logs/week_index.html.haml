@@ -26,11 +26,14 @@
               = "<daily>"
             %p
               = "#{sum_oneday_logs.sumkcal.to_i}kcal/日"
+<<<<<<< Updated upstream
             %p
               = "<体重>"
               %br
               -if (weights = current_user.user_wights.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
                 = link_to "#{weights.last.wight}kg", edit_user_wight_path(weights.last.id)
+=======
+>>>>>>> Stashed changes
         -else  
           .bottom-content
             %p
