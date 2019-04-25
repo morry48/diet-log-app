@@ -3,6 +3,7 @@ class Log < ApplicationRecord
   validates :protein, presence: true
   validates :carbohydrate, presence: true
   validates :fat, presence: true
+  validates :start_time, presence: true
   belongs_to :user
 
 

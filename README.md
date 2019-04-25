@@ -1,24 +1,53 @@
-# README
+# Diet-log-app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+*マクロ栄養素管理機能(食事におけるタンパク質・脂質・炭水化物をグラム単位で管理)
+*体重管理機能
+*ユーザー管理機能
 
-Things you may want to cover:
 
-* Ruby version
+##アソシエーションについて
+usersテーブルとlogsテーブル  一対多
+usersテーブルとweight_logs  一対多
 
-* System dependencies
 
-* Configuration
+##usersテーブル
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|email|text|null: false, unique: true|
+|password|text|null: false|
+|nickname|string|null: false|
 
-* Database initialization
+class User < ActiveRecored: :base
+  has_many:logs
+  has_many:weight_logs
+end
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+##logsテーブル
 
-* Deployment instructions
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|protein|float|null: false|
+|fat|float|null: false|
+|carbohydrate|float|null: false|
+|start_time|datetime|null: false|
+|user_id|references|foreign_key: ture|
 
-* ...
+class Log < ActiveRecord: :Base
+  belong_to :user
+end
+
+
+##weight_logsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|weight|float|null: false|
+|start_time|datetime|null: false|
+|user_id|references|foreign_key: ture|
+
+class WeightLog < ActiveRecord: :Base
+  belong_to :user
+end
