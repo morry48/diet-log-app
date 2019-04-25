@@ -9,10 +9,6 @@ class User < ApplicationRecord
   validates :nickname, presence: true
 
   has_many :logs
-<<<<<<< Updated upstream
-  has_many :user_wights
-=======
   has_many :weight_logs
->>>>>>> Stashed changes
   has_one_attached :avatar
 end
