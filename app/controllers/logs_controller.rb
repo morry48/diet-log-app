@@ -1,7 +1,7 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!, except: [:intro_app]
   def index
-    @logs =Logs.includes(:user)
+    @logs =current_user.logs.all
     @sum_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
     @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
     -path = "#{request.fullpath}"
@@ -13,7 +13,7 @@ class LogsController < ApplicationController
   end
 
   def week_index
-    @logs =Logs.includes(:user)
+    @logs =current_user.logs.all
     @um_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
     @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
     -path = "#{request.fullpath}"
