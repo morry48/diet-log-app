@@ -1,5 +1,6 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!, except: [:intro_app]
+  
   def index
     @logs =current_user.logs.all
     @sum_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
@@ -9,7 +10,6 @@ class LogsController < ApplicationController
     - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
     @count_month_days =  Date.parse(params[:start_date]).end_of_month.day
     @calorie_parameter = (100*(@sum_this_month_calorie - @sum_today_calorie.to_f) / (2120*(Time.now.day-1).to_f)).to_i
-
   end
 
   def week_index

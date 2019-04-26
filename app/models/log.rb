@@ -8,7 +8,7 @@ class Log < ApplicationRecord
 
 
   def self.sumkcal 
-    sum(:protein)*4 + sum(:carbohydrate)*4 + sum(:fat)*9 
+    return (sumprotein * 4 + sumcarbohydrate * 4 + sumfat * 9) 
   end
 
   def self.sumprotein
