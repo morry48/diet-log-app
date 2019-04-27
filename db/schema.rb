@@ -34,23 +34,14 @@ ActiveRecord::Schema.define(version: 2019_04_25_013809) do
   end
 
   create_table "logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.float "protein"
-    t.float "fat"
-    t.float "carbohydrate"
+    t.string "name", null: false
+    t.float "protein", null: false
+    t.float "fat", null: false
+    t.float "carbohydrate", null: false
+    t.datetime "start_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "start_time"
     t.integer "user_id"
-  end
-
-  create_table "user_wights", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.float "wight", null: false
-    t.datetime "start_time"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_wights_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -68,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_04_25_013809) do
 
   create_table "weight_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "weight", null: false
-    t.datetime "start_time"
+    t.datetime "start_time", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,9 +67,5 @@ ActiveRecord::Schema.define(version: 2019_04_25_013809) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-<<<<<<< Updated upstream
-  add_foreign_key "user_wights", "users"
-=======
   add_foreign_key "weight_logs", "users"
->>>>>>> Stashed changes
 end
