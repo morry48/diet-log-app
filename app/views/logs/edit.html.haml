@@ -4,21 +4,20 @@
       .card-content
         %p 食事管理編集
 .row
-  .s12.m7
-    .card
-      .card-content.main
-        %ul.collection 
-          .form.collection-item
-            = form_for [@log] do |f|
-              = f.label :食品名
-              = f.text_field :name,placeholder: '    food'
-              = f.label :タンパク質
-              = f.text_field :protein,placeholder: '    protein(g)'
-              = f.label :脂質
-              = f.text_field :fat,placeholder: '    fat(g)'
-              = f.label :炭水化物
-              = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
-              .datetime
-                = f.datetime_select :start_time, class:"datepicker"
-              = f.submit '編集', class: 'form__submit waves-effect waves-light btn'
-              = link_to '削除', "/logs/#{@log.id}", method: :delete, class:'waves-effect waves-light btn'
+  %ul.collection 
+    .form.collection-item
+      = form_for [@log] do |f|
+        .main_content
+          .card.text_form
+            %p 食品名
+            = f.text_field :name,placeholder: '    food'
+            %p タンパク質
+            = f.text_field :protein,placeholder: '    protein(g)'
+            %p 脂質
+            = f.text_field :fat,placeholder: '    fat(g)'
+            %p 炭水化物
+            = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+            .datetime
+              = f.datetime_select :start_time, class:"datepicker"
+        = f.submit '編集', class: 'form__submit waves-effect waves-light btn'
+        = link_to '削除', "/logs/#{@log.id}", method: :delete, class:'waves-effect waves-light btn'

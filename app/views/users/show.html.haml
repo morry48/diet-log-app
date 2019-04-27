@@ -3,8 +3,9 @@
     .card
       .card-content
         %h1 
-          = "#{@user.nickname}さん"
+          = "#{@user.nickname}さん(下記未実装)"
           =link_to "ユーザー情報編集",  edit_user_path(current_user),  class: 'btn'
+          =link_to 'ログアウト',  destroy_user_session_path, method: :delete,  class: 'btn'
 .row
   %ul.collection 
     .form.collection-item

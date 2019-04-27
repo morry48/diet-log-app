@@ -9,17 +9,17 @@
       = form_for [@log] do |f|
         .main_content
           .card.text_form
-            = f.label :食品名
+            %p 食品名
             = f.text_field :name,placeholder: '    food'
-            = f.label :タンパク質
+            %p タンパク質
             = f.text_field :protein,placeholder: '    protein(g)'
-            = f.label :脂質
+            %p 脂質
             = f.text_field :fat,placeholder: '    fat(g)'
-            = f.label :炭水化物
+            %p 炭水化物
             = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
-        .datetime
-          = f.datetime_select :start_time, class:"datepicker"
-        -# %i.form_add.waves-effect.waves-light.btn.waves-input-wrapper{:style => "", "data-disable-with" => "フォーム追加",  :id => "form_add", :name => "commit", :type => "form_add", :value => "フォーム追加"} フォーム追加
+            .datetime
+              = f.datetime_select :start_time, class:"datepicker"
+            -# %i.form_add.waves-effect.waves-light.btn.waves-input-wrapper{:style => "", "data-disable-with" => "フォーム追加",  :id => "form_add", :name => "commit", :type => "form_add", :value => "フォーム追加"} フォーム追加
         %br
         %br
-        = f.submit '登録', class: 'form__submit waves-effect waves-light btn'
+        = f.submit '登録', class: 'form__submit waves-effect waves-light btn'  

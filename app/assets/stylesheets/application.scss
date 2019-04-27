@@ -6,8 +6,20 @@
  @import 'materialize';
  @import "modules/logs-new";
  @import "modules/logs-index";
+ @import 'modules/user_sign_in';
+ @import 'modules/week_index';
+ @import 'modules/intro_app';
+ @import 'modules/header';
+ @import'modules/user_weight';
+  
+
 
  .datetime select {
   display: inline-flex;
   width: auto;
+}
+.notice{
+  height: 100px;
+  font-size:60px;
+  line-height: 100px;
 }

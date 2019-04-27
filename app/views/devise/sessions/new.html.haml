@@ -1,0 +1,30 @@
+.card
+  .card-content    
+    #contents.bgcolor-white.pt1em.pb1em
+      #main_cnt_wrapper
+        #yjContentsBody
+          .yjContainer
+            .form_box
+              %h1
+                Diet-log-val
+              .test-user
+                %h3 ポートフォリオ閲覧用
+                %h3 email : test@com
+                %h3 password: 12345678
+              %h3 ログイン
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                %div
+                  = f.email_field :email, autofocus: true, :placeholder => 'メールアドレスを入力'
+                %div
+                  = f.password_field :password, autocomplete: "off", :placeholder => 'パスワードを入力'
+                .row
+                  - if devise_mapping.rememberable?
+                    .col-xs-6
+                      = f.check_box :remember_me
+                      = f.label :パスワードを記憶
+                  .col-xs-6 パスワードを忘れましたか？
+                  .submit= f.submit :value=>"ログイン", :class=>"btn"
+              .more_link_box
+                %strong まだアカウントを持っていませんか？
+                %br
+                = render "devise/shared/links"
