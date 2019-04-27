@@ -1,20 +1,20 @@
 .row.title
   .s12.m4
     .card
-      .card-content
+      .card-content.weight_title
         %h1 体重管理編集
 .row
   %ul.collection 
     .form.collection-item
       = form_for [@weight_log] do |f|
         .main_content
-          .card.text_form
+          .card.text_form.weight_box
             = f.label :体重
             = f.text_field :weight,placeholder: '    weight(kg)'
             %P 0.1kg単位で数字のみ入力ください
             %P 毎日寝起きの体重を記録することが理想的です
-        .datetime
-          = f.datetime_select :start_time, class:"datepicker"
+            .datetime
+              = f.datetime_select :start_time, class:"datepicker"
         %br
         %br
         = f.submit '編集', class: 'form__submit waves-effect waves-light btn'

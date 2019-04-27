@@ -74,3 +74,4 @@ gem 'erb2haml'
 gem 'devise'
 gem 'simple_calendar', '~> 2.0'
 gem 'mini_magick'
+gem "jquery-rails"

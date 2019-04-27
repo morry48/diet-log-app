@@ -11,20 +11,18 @@
     - if user_signed_in?
       %nav.grey.darken-4{:class => "#212121"}
         .nav-wrapper
-          %a.brand-logo.right{:href => "/logs"} Diet log val
-          %ul#nav-mobile.left.hide-on-med-and-down
+          %a.brand-logo.right{:href => "/logs"} val
+          %a.sidenav-trigger{"data-target" => "mobile-demo", :href => "#"}
+          %ul.left
             %li
-              =link_to 'イントロダクション',  intro_app_logs_path, method: :get
+              =link_to 'イントロ',  intro_app_logs_path, method: :get
             %li
-              =link_to '食事管理登録',  new_log_path, method: :get
+              =link_to '食事登録',  new_log_path, method: :get
             %li
               =link_to 'カレンダー', logs_path, method: :get
             %li
-              =link_to 'ユーザー情報', user_path(current_user), method: :get
-            %li
-              =link_to '体重管理登録', new_weight_log_path
-            %li
-              =link_to 'ログアウト',  destroy_user_session_path, method: :delete                   
+              =link_to '体重登録', new_weight_log_path
+                
     - else
       %nav.grey.darken-4{:class => "#212121"}
         .nav-wrapper

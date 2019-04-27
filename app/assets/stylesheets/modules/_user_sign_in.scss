@@ -1,0 +1,32 @@
+
+.yjContainer{
+  .test-user{
+    border: solid red 7px;
+    border-radius: 10px;
+    padding: 10px;
+    margin:40px;
+  }
+
+  .form_box{
+    *{
+      font-size:55px;
+    }
+    h1{
+      font-size:110px;
+    }
+    div{
+      input::-webkit-input-placeholder{
+        font-size:35px;
+      }
+      input[type="email"]{
+        font-size:55px;
+      }
+      input[type="password"]{
+        font-size:55px;
+      }
+      input[type="text"]{
+        font-size:55px;
+      }
+    }   
+  }
+}   
