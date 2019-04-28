@@ -42,6 +42,7 @@
   =link_to 'ユーザー情報', user_path(current_user), method: :get,  class:'waves-effect waves-light btn'
   = month_calendar events: @logs do |date, logs|
     =link_to date.day
+    %p "#{date.strftime('%Y-%m-%d')}""
     %br
     = "<食事>"
     - logs.each do |log|
@@ -49,7 +50,7 @@
         = link_to log.name, edit_log_path(log)
     .bottom-content
       - if is_this_month(params[:start_date]) || path == "/logs"
-        = "<カロリー>"
+        = "<kcal>"
         %br
         -# カレンダーの日付を用いる変数の定義
         - sum_this_month_day_calorie = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
@@ -68,7 +69,7 @@
       - else
         %br
           %span
-            ="<カロリー>"
+            ="<kcal>"
           %br
           - sum_past_month_day_calorie=@logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
           = "#{sum_past_month_day_calorie}kcal/日"
@@ -77,4 +78,6 @@
           %br
           -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
             = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
+
+
 
