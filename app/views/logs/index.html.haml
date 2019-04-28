@@ -6,7 +6,9 @@
         %p
           #{current_user.nickname}の目標摂取カロリー　2,120 kcal/日(未実装)
         %p
-          PFCバランス      140g  F40g  C280g（未実装）
+          PFCバランス      
+        %p
+          140g  F40g  C280g（未実装）
           -if Date.today.strftime('%d') == 01
             %p 
               今日の摂取カロリー   
@@ -38,39 +40,30 @@
               %p 平均摂取カロリー      #{ @sum_month_calorie / @count_month_days}kcal/日
 
 .card-content-calender
-  =link_to '週カレンダーへ', week_index_logs_path,  method: :get,  class:'waves-effect waves-light btn'
-  =link_to 'ユーザー情報', user_path(current_user), method: :get,  class:'waves-effect waves-light btn'
+  .select-btn.center
+    =link_to '週カレンダー', week_index_logs_path,  method: :get,  class:'waves-effect waves-light btn'
+    =link_to 'ユーザー情報', user_path(current_user), method: :get,  class:'waves-effect waves-light btn'
   = month_calendar events: @logs do |date, logs|
     =link_to date.day
     .bottom-content
-      - if is_this_month(params[:start_date]) || path == "/logs"
-        .kcal-box
-          -# カレンダーの日付を用いる変数の定義
-          - sum_this_month_day_calorie = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
-          -if sum_this_month_day_calorie != 0
-            - if  sum_this_month_day_calorie  > 2120 
-              %span.red-text 
-                = "#{sum_this_month_day_calorie}"
-                = "(kcal)"
-                %br
-            - else
+      .kcal-box
+        -# カレンダーの日付を用いる変数の定義
+        - sum_this_month_day_calorie = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
+        -if sum_this_month_day_calorie != 0
+          - if  sum_this_month_day_calorie  > 2120 
+            %span.red-text 
               = "#{sum_this_month_day_calorie}"
               = "(kcal)"
               %br
-        .weight-box
-          %br
-          -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-            = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
-      - else
+          - else
+            = "#{sum_this_month_day_calorie}"
+            = "(kcal)"
+            %br
+      .weight-box
         %br
-          %span
-            ="(kcal)"
-          %br
-          - sum_past_month_day_calorie=@logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
-          = "#{sum_past_month_day_calorie}kcal/日"
-          %br
-          -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-            = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
+        -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+          = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
+
 
 
 

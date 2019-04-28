@@ -1,5 +1,17 @@
-.card-content-calendar{
+.card-content-week-calendar{
   *{
-    font-size:30px;
+    font-size:36px;
+  }
+  th{
+    border:lightseagreen 5px solid;
+  }
+  td{
+    border:lightseagreen 5px solid;
+  }
+  .btn{
+    margin-top:20px;
+    height: 150px;
+    width:300px;
+    line-height: 150px;
   }
 }

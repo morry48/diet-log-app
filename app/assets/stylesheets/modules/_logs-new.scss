@@ -29,23 +29,33 @@
   margin-top:40px;
   border:black 2px solid;
   padding: 30px;
-  height: 400px;
+  height: 800px;
   *{
-    font-size:20px;
-  }
-  input[type="text"]{
-    font-size:50px;
-    padding-left:80px;
-  }
-  select{
     font-size:30px;
-    border:1px;
-    }
+  }
 
+  input[type="text"]{
+    font-size:55px;
+    padding-left:80px;
+    height: 100px;
+  }
+  .datetime{
+    height: 200px;
+  select{
+    font-size:45px;
+    border:1px;
+    height: 120px;
+    
+    }
+  }
 }
 
-
-select{
-  font-size:30px;
-  border:1px;
+.bottom-btn{
+  .btn{
+    height: 250px;
+    width:300px;
+    font-size: 60px;
+    line-height: 200px;
+    margin-top:40px;
   }
+}
