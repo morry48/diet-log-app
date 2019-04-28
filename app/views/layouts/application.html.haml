@@ -26,8 +26,9 @@
     - else
       %nav.grey.darken-4{:class => "#212121"}
         .nav-wrapper
-          %a.brand-logo.right{:href => "/logs"} Diet log val
-          %ul#nav-mobile.left.hide-on-med-and-down
+          %a.brand-logo.right{:href => "/logs"} val
+          %a.sidenav-trigger{"data-target" => "mobile-demo", :href => "#"}
+          %ul.left
             %li
               =link_to 'イントロダクション',  intro_app_logs_path, method: :get   
             %li

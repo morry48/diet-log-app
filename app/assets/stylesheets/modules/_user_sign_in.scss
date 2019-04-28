@@ -7,26 +7,39 @@
     margin:40px;
   }
 
-  .form_box{
+  .login-form{
     *{
       font-size:55px;
     }
     h1{
       font-size:110px;
     }
-    div{
-      input::-webkit-input-placeholder{
-        font-size:35px;
+    form{
+      height: 400px;
+      div{
+        height: 140px;
+        input{
+          height: 115px;
+        }
+        input::-webkit-input-placeholder{
+          font-size:35px;
+        }
+        input[type="email"]{
+          font-size:55px;
+        }
+        input[type="password"]{
+          font-size:55px;
+        }
+        input[type="text"]{
+          font-size:55px;
+        }
       }
-      input[type="email"]{
-        font-size:55px;
+    }
+    .more_link_box{
+      height: 500px;
+      strong{
+        font-size:30px;
       }
-      input[type="password"]{
-        font-size:55px;
-      }
-      input[type="text"]{
-        font-size:55px;
-      }
-    }   
+    }
   }
 }   

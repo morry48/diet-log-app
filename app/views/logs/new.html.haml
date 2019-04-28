@@ -20,6 +20,5 @@
             .datetime
               = f.datetime_select :start_time, class:"datepicker"
             -# %i.form_add.waves-effect.waves-light.btn.waves-input-wrapper{:style => "", "data-disable-with" => "フォーム追加",  :id => "form_add", :name => "commit", :type => "form_add", :value => "フォーム追加"} フォーム追加
-        %br
-        %br
-        = f.submit '登録', class: 'form__submit waves-effect waves-light btn'  
+        .bottom-btn.center
+          = f.submit '登録', class: 'form__submit waves-effect waves-light  btn'  

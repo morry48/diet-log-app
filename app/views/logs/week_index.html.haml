@@ -1,16 +1,35 @@
 - path = "#{request.fullpath}"
-.card-content-calendar
+.row.title
+  .s12.m4
+    .card
+      #card-content-title
+        %p
+          #{current_user.nickname}の目標摂取カロリー　2,120 kcal/日(未実装)
+        %p
+          PFCバランス      
+        %p
+          140g  F40g  C280g（未実装）
+        %p
+          今日の合計摂取カロリー
+          -if @sum_today_calorie > 2120
+            %span.red-text
+              =(@sum_today_calorie).to_s + "kcal"
+          -else
+            =(@sum_today_calorie).to_s + "kcal"
+.card-content-week-calendar
   =link_to '月カレンダー', root_path,  method: :get,  class:'waves-effect waves-light btn'
   = week_calendar events: @logs do |date, logs|
     = link_to date.day
     %br
-    = "<食事>"
-    - logs.each do |log|
-      %div
-        = link_to log.name, log
-    -# カレンダーの日付を用いた変数の定義
+    %br
+    -if logs.present?
+      %p <食事>
+      - logs.each do |log|
+        %div
+          = link_to log.name, edit_log_path(log)
+      %br
     - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
-    -if path == "/logs/week_index"
+    -if sum_oneday_logs.present?
       .bottom-content
         %p
           = "<PFC>" 
@@ -20,33 +39,14 @@
           = "F #{sum_oneday_logs.sumfat.to_i}g"
         %p
           = "C #{sum_oneday_logs.sumcarbohydrate.to_i}g"
+        %br
         %p
-          = "<daily>"
-        %p
-          = "#{sum_oneday_logs.sumkcal.to_i}kcal"
-        %p
-          = "<体重>"
+          = "#{sum_oneday_logs.sumkcal.to_i}"
           %br
-          -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-            = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
-    -else  
-      .bottom-content
-        %p
-          = "<PFC>" 
-        %p
-          = "P #{sum_oneday_logs.sumprotein.to_i}g"
-        %P
-          = "F #{sum_oneday_logs.sumfat.to_i}g"
-        %P
-          = "C #{sum_oneday_logs.sumcarbohydrate.to_i}g"
-        %p
-          = "<daily>"
-        %p
-          = "#{sum_oneday_logs.sumkcal.to_i}kcal"
-        %p
-          = "<体重>"
-          %br
-          -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
-            = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
+        %p (kcal)
+        %br
+    -if (weights = current_user.weight_logs.where('start_time LIKE(?)', "#{date.strftime('%Y-%m-%d')}%")).present?
+      = link_to "#{weights.last.weight}kg", edit_weight_log_path(weights.last.id)
+
 
   

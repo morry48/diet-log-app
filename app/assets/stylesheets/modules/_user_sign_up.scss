@@ -1,0 +1,54 @@
+
+.yjContainer{
+  .test-user{
+    border: solid red 7px;
+    border-radius: 10px;
+    padding: 10px;
+    margin:40px;
+  }
+
+  .sign-up-form{
+    *{
+      font-size:55px;
+    }
+    h1{
+      font-size:110px;
+    }
+    form{
+      height: 900px;
+    .label{
+        height: 50px;
+    }
+    p{
+      margin-top:20px;
+      padding-bottom:20px;
+      font-size:35px;
+    }
+    input{
+      height: 115px;
+    }
+    input::-webkit-input-placeholder{
+      font-size:35px;
+    }
+    input[type="email"]{
+      font-size:55px;
+    }
+    input[type="password"]{
+      font-size:55px;
+    }
+    input[type="text"]{
+      font-size:55px;
+    }
+    .submit{
+      margin-bottom:20px;
+    }
+    }
+    .more_link_box{
+      margin-top:20px;
+      height: 300px;
+      strong{
+        font-size:30px;
+      }
+    }
+  }
+}   
