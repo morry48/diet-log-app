@@ -48,15 +48,15 @@
     .bottom-content
       .kcal-box
         -# カレンダーの日付を用いる変数の定義
-        - sum_this_month_day_calorie = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
-        -if sum_this_month_day_calorie != 0
-          - if  sum_this_month_day_calorie  > 2120 
+        - sum_day_calorie = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%").sumkcal.to_i
+        -if sum_day_calorie != 0
+          - if  sum_day_calorie  > 2120 
             %span.red-text 
-              = "#{sum_this_month_day_calorie}"
+              = "#{sum_day_calorie}"
               = "(kcal)"
               %br
           - else
-            = "#{sum_this_month_day_calorie}"
+            = "#{sum_day_calorie}"
             = "(kcal)"
             %br
       .weight-box

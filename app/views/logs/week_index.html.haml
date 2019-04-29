@@ -29,8 +29,8 @@
         %div
           = link_to log.name, edit_log_path(log)
       %br
-    - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
-    -if sum_oneday_logs.present?
+    - sum_oneday_logs = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
+    -if logs.present?
       .bottom-content
         %p
           = "<PFC>" 
