@@ -18,7 +18,7 @@
             =(@sum_today_calorie).to_s + "kcal"
 .card-content-week-calendar
   .upperside-btn.center
-    =link_to '月カレンダー', root_path,  method: :get,  class:'waves-effect waves-light btn'
+    =link_to '月カレンダー', logs_path,  method: :get,  class:'waves-effect waves-light btn'
   = week_calendar events: @logs do |date, logs|
     = link_to date.day
     %br
