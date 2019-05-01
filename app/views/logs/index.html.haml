@@ -7,7 +7,7 @@
           #{current_user.nickname}の目標摂取カロリー　2,120 kcal/日(未実装)
         %p
           PFCバランス      
-        %p
+        %span
           140g  F40g  C280g（未実装）
           -if Date.today.strftime('%d') == 01
             %p 
@@ -15,22 +15,25 @@
               = (@sum_today_calorie).to_s + "kcal/日"
           -else
             -if is_this_month(params[:start_date]) || path == "/logs"
-              %p
-                今月の平均摂取カロリー
+              -if Time.now.day != 1
+                %p
+                  今月の平均摂取カロリー
                 -if (@sum_this_month_calorie - @sum_today_calorie)/(Time.now.day-1) >2120
                   %span.red-text
                     =  ((@sum_this_month_calorie - @sum_today_calorie)/(Time.now.day-1)).to_s + "kcal/日"
                 -else
                   =  ((@sum_this_month_calorie - @sum_today_calorie)/(Time.now.day-1)).to_s + "kcal/日"
-              %p
-                今日の合計摂取カロリー
+              -if Time.now.day != 1
+                %p
+                  今日の合計摂取カロリー
                 -if @sum_today_calorie > 2120
                   %span.red-text
                     =(@sum_today_calorie).to_s + "kcal"
                 -else
                   =(@sum_today_calorie).to_s + "kcal"
-              %p
-                バロメーター(kcal)
+              -if Time.now.day != 1
+                %p
+                  バロメーター(kcal)
                 -if @calorie_parameter > 100
                   %span.red-text
                     = "#{@calorie_parameter}" + "%"
