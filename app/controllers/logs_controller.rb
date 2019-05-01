@@ -1,5 +1,6 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!, except: [:intro_app]
+  respond_to :html
   
   def index
     @logs =current_user.logs.all
@@ -23,7 +24,12 @@ class LogsController < ApplicationController
   end
 
   def create
-    @log = Log.new(log_params)
+    i = 0
+    while params[:log][i.to_s.to_sym] != nil do
+      @log=Log.new(log_params(i))
+      @log.save!
+      i = i + 1
+    end
     if @log.save
       redirect_to new_log_path ,notice: '食事管理登録をしました'
     else
@@ -57,7 +63,7 @@ class LogsController < ApplicationController
   end
 
   private
-  def log_params
-    params.require(:log).permit(:name,:protein,:fat,:carbohydrate,:start_time).merge(user_id: current_user.id)
+  def log_params(i)
+    params.require(:log).require(i.to_s.to_sym).permit(:name,:protein,:fat,:carbohydrate,:start_time).merge(user_id:current_user.id)
   end
 end
