@@ -12,7 +12,6 @@
                 %h3 ゲストアカウント
                 %h3 email : test@com
                 %h3 password: 12345678
-              %h3 ログイン
               = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 = devise_error_messages!
                 .label

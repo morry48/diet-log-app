@@ -13,10 +13,8 @@ class LogsController < ApplicationController
 
   def week_index
     @logs =current_user.logs.all
-    @um_this_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%").sumkcal.to_i
-    @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
-    @sum_month_calorie = current_user.logs.where('start_time LIKE(?)', "#{request.fullpath.delete("/?start_date=").gsub(/(.{3})$/, '')}%").sumkcal.to_i
     -params[:start_date]||= Date.today.strftime('%Y-%m-%d')
+    @sum_today_calorie  = current_user.logs.where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%").sumkcal.to_i
     @count_month_days =  Date.parse(params[:start_date]).end_of_month.day
   end
 

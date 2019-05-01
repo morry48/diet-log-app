@@ -18,7 +18,7 @@
             =(@sum_today_calorie).to_s + "kcal"
 .card-content-week-calendar
   .upperside-btn.center
-    =link_to '月カレンダー', root_path,  method: :get,  class:'waves-effect waves-light btn'
+    =link_to '月カレンダー', logs_path,  method: :get,  class:'waves-effect waves-light btn'
   = week_calendar events: @logs do |date, logs|
     = link_to date.day
     %br
@@ -29,8 +29,8 @@
         %div
           = link_to log.name, edit_log_path(log)
       %br
-    - sum_oneday_logs = Log.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
-    -if sum_oneday_logs.present?
+    - sum_oneday_logs = @logs.where('start_time LIKE(?)',"#{date.strftime('%Y-%m-%d')}%")
+    -if logs.present?
       .bottom-content
         %p
           = "<PFC>" 

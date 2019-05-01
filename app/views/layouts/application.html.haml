@@ -21,8 +21,7 @@
             %li
               =link_to 'カレンダー', logs_path, method: :get
             %li
-              =link_to '体重登録', new_weight_log_path
-                
+              =link_to '体重登録', new_weight_log_path, method: :get
     - else
       %nav.grey.darken-4{:class => "#212121"}
         .nav-wrapper
