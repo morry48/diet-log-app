@@ -22,6 +22,7 @@ class Log < ApplicationRecord
   end
 end
 
+
 def is_this_month(from_time)
   return (from_time.gsub(/(.{3})$/, '') == Date.today.strftime('%Y-%m'))
 end

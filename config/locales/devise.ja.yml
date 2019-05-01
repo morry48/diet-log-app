@@ -57,6 +57,7 @@ ja:
       not_saved:
         one: "エラーにより、この %{resource} を保存できません："
         other: "%{count} 個のエラーにより、この %{resource} を保存できません："
+
   date:
     formats:
       default: "%Y/%m/%d"
@@ -81,3 +82,4 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
     am: "午前"
     pm: "午後"
+
