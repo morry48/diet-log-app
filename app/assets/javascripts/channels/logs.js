@@ -3,13 +3,13 @@ $(document).ready(function() {
   $("#form_add").click(function(){
     let count = document.getElementsByClassName("log_new_form").length;
     let html = `<div class="card text_form log_new_form" data-log-id=${count} id="log_new_form_${count}" >
-                  <label for="log_食品名" class="active">食品名</label>
+                  <p>食品名</p>
                   <input placeholder="    food" type="text" name="log[${count}][name]" id="log_${count}_name">
-                  <label for="log_タンパク質" class="active">タンパク質</label>
+                  <p>タンパク質</p>
                   <input placeholder="    protein(g)" type="text" name="log[${count}][protein]" id="log_${count}_protein">
-                  <label for="log_脂質" class="active">脂質</label>
+                  <p">脂質</p>
                   <input placeholder="    fat(g)" type="text" name="log[${count}][fat]" id="log_fat">
-                  <label for="log_炭水化物" class="active">炭水化物</label>
+                  <p">炭水化物</p>
                   <input placeholder="    carbohydrate(g)" type="text" name="log[${count}][carbohydrate]" id="log_${count}_carbohydrate">
                   <div class="datetime">
                     <select id="log_${count}_start_time_1i" name="log[${count}][start_time(1i)]">
