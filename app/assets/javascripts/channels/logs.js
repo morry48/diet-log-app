@@ -11,14 +11,15 @@ $(document).ready(function() {
                   <input placeholder="    fat(g)" type="text" name="log[${count}][fat]" id="log_fat">
                   <p">炭水化物</p>
                   <input placeholder="    carbohydrate(g)" type="text" name="log[${count}][carbohydrate]" id="log_${count}_carbohydrate">
-                  <div class="datetime">
+                    <div class="datetime">
                     <select id="log_${count}_start_time_1i" name="log[${count}][start_time(1i)]">
+                    <option value="">年</option>
                     <option value="2014">2014</option>
                     <option value="2015">2015</option>
                     <option value="2016">2016</option>
                     <option value="2017">2017</option>
                     <option value="2018">2018</option>
-                    <option value="2019" selected="selected">2019</option>
+                    <option value="2019">2019</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
@@ -26,11 +27,12 @@ $(document).ready(function() {
                     <option value="2024">2024</option>
                     </select>
                     <select id="log_${count}_start_time_2i" name="log[${count}][start_time(2i)]">
+                    <option value="">月</option>
                     <option value="1">1月</option>
                     <option value="2">2月</option>
                     <option value="3">3月</option>
                     <option value="4">4月</option>
-                    <option value="5" selected="selected">5月</option>
+                    <option value="5">5月</option>
                     <option value="6">6月</option>
                     <option value="7">7月</option>
                     <option value="8">8月</option>
@@ -40,7 +42,8 @@ $(document).ready(function() {
                     <option value="12">12月</option>
                     </select>
                     <select id="log_${count}_start_time_3i" name="log[${count}][start_time(3i)]">
-                    <option value="1" selected="selected">1</option>
+                    <option>日</option>
+                    <option value="1" >1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -73,6 +76,7 @@ $(document).ready(function() {
                     <option value="31">31</option>
                     </select>
                     — <select id="log_${count}_start_time_4i" name="log[${count}][start_time(4i)]">
+                    <option value="">時</option>
                     <option value="00">00</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -94,11 +98,12 @@ $(document).ready(function() {
                     <option value="18">18</option>
                     <option value="19">19</option>
                     <option value="20">20</option>
-                    <option value="21" selected="selected">21</option>
+                    <option value="21">21</option>
                     <option value="22">22</option>
                     <option value="23">23</option>
                     </select>
                     : <select id="log_${count}_start_time_5i" name="log[${count}][start_time(5i)]">
+                    <option value="">分</option>
                     <option value="00">00</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -132,7 +137,7 @@ $(document).ready(function() {
                     <option value="30">30</option>
                     <option value="31">31</option>
                     <option value="32">32</option>
-                    <option value="33" selected="selected">33</option>
+                    <option value="33">33</option>
                     <option value="34">34</option>
                     <option value="35">35</option>
                     <option value="36">36</option>
@@ -159,8 +164,7 @@ $(document).ready(function() {
                     <option value="57">57</option>
                     <option value="58">58</option>
                     <option value="59">59</option>
-                    </select>
-
+                    </select>  
                     </div>
                   </div>`
     $('.main_content').append(html);
