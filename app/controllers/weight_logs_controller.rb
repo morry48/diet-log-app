@@ -22,12 +22,12 @@ class WeightLogsController < ApplicationController
     if @weight_log.user_id == current_user.id
       weight_log.update(weight_log_params)
     end
-    redirect_to root_path , notice:'体重登録を編集しました'
+    redirect_to  logs_path , notice:'体重登録を編集しました'
   end
 
   def destroy
     @weight_log.destroy
-    redirect_to root_path ,notice:'体重管理を削除しました'
+    redirect_to  logs_path ,notice:'体重管理を削除しました'
   end
 
   private

@@ -46,7 +46,7 @@ class LogsController < ApplicationController
 
   def destroy
     @log.destroy
-    redirect_to root_path ,notice: '食事管理情報を削除しました'
+    redirect_to  logs_path ,notice: '食事管理情報を削除しました'
   end
 
   def intro_app
