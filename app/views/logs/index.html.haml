@@ -39,9 +39,6 @@
                     = "#{@calorie_parameter}" + "%"
                 -else
                   = "#{@calorie_parameter}" +"%"
-            -else 
-              %p 平均摂取カロリー      #{ @sum_month_calorie / @count_month_days}kcal/日
-
 .card-content-calender
   .select-btn.center
     =link_to '週カレンダー', week_index_logs_path,  method: :get,  class:'waves-effect waves-light btn'

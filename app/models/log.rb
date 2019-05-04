@@ -20,11 +20,19 @@ class Log < ApplicationRecord
   def self.sumfat
     sum(:fat) 
   end
+
+  def self.match_day
+    return where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m-%d')}%")
+  end
+
+  def self.match_month
+    return  where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%")
+  end
+
+
 end
 
 
-def is_this_month(from_time)
-  return (from_time.gsub(/(.{3})$/, '') == Date.today.strftime('%Y-%m'))
-end
+
 
 

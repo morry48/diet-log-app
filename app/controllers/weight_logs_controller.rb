@@ -1,4 +1,6 @@
 class WeightLogsController < ApplicationController
+  before_action :set_weight_log, only: [:edit, :update, :destroy]
+
   def new
     @weight_log = WeightLog.new
   end
@@ -13,22 +15,18 @@ class WeightLogsController < ApplicationController
     end      
   end
 
-
   def edit
-    @weight_log = WeightLog.find(params[:id])
   end
 
   def update
-    weight_log = WeightLog.find(params[:id])
-    if weight_log.user_id == current_user.id
+    if @weight_log.user_id == current_user.id
       weight_log.update(weight_log_params)
     end
     redirect_to root_path , notice:'体重登録を編集しました'
   end
 
   def destroy
-    weight_log= WeightLog.find(params[:id])
-    weight_log.destroy
+    @weight_log.destroy
     redirect_to root_path ,notice:'体重管理を削除しました'
   end
 
@@ -37,5 +35,7 @@ class WeightLogsController < ApplicationController
     params.require(:weight_log).permit(:weight,:start_time).merge(user_id: current_user.id)
   end
 
-
+  def set_weight_log
+    @weight_log= WeightLog.find(params[:id])
+  end
 end
