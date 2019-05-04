@@ -10,15 +10,15 @@
         .main_content
           .card.text_form
             %p 食品名
-            = f.text_field :name,placeholder: '    food'
+            = f.text_field :name, index: 0, placeholder: '    food'
             %p タンパク質
-            = f.text_field :protein,placeholder: '    protein(g)'
+            = f.text_field :protein, index: 0, placeholder: '    protein(g)'
             %p 脂質
-            = f.text_field :fat,placeholder: '    fat(g)'
+            = f.text_field :fat, index: 0, placeholder: '    fat(g)'
             %p 炭水化物
-            = f.text_field :carbohydrate,placeholder: '    carbohydrate(g)'
+            = f.text_field :carbohydrate, index: 0, placeholder: '    carbohydrate(g)'
             .datetime
-              = f.datetime_select :start_time, class:"datepicker"
+              = f.datetime_select :start_time, index: 0, class:"datepicker"
         .bottom-btn.center
           = f.submit '編集', class: 'form__submit waves-effect waves-light btn'
           = link_to '削除', "/logs/#{@log.id}", method: :delete, class:'waves-effect waves-light btn'

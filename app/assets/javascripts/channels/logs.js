@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   $("#form_add").click(function(){
     let count = document.getElementsByClassName("log_new_form").length;
     let html = `<div class="card text_form log_new_form" data-log-id=${count} id="log_new_form_${count}" >
