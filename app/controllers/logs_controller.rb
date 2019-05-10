@@ -2,7 +2,7 @@ class LogsController < ApplicationController
   before_action :authenticate_user!, except: [:intro_app]
   before_action :set_log, only: [:show, :edit, :update, :destroy]
   before_action :set_logs, only: [:index, :week_index]
-  before_action :set_nil_guard, only: [:index, :week_index]
+  before_action :set_date_nil_guard, only: [:index, :week_index]
   before_action :set_today_calorie, only: [:index, :week_index]
   before_action :set_count_month_days, only: [:index, :week_index]
   
@@ -67,8 +67,8 @@ private
     @logs =current_user.logs.all
   end
 
-  def set_nil_guard
-    return - params[:start_date]||= Date.today.strftime('%Y-%m-%d')
+  def set_date_nil_guard
+    return  params[:start_date]||= Date.today.strftime('%Y-%m-%d')
   end
 
   def set_today_calorie

@@ -19,6 +19,7 @@
   .upperside-btn.center
     =link_to '月カレンダー', logs_path,  method: :get,  class:'waves-effect waves-light btn'
   = week_calendar events: @logs do |date, logs|
+    -
     = link_to date.day
     %br
     %br

@@ -6,7 +6,6 @@ class Log < ApplicationRecord
   validates :start_time, presence: true
   belongs_to :user
 
-
   def self.sumkcal 
     return (sumprotein * 4 + sumcarbohydrate * 4 + sumfat * 9) 
   end
@@ -17,6 +16,7 @@ class Log < ApplicationRecord
   def self.sumcarbohydrate
     sum(:carbohydrate) 
   end
+
   def self.sumfat
     sum(:fat) 
   end
@@ -28,6 +28,8 @@ class Log < ApplicationRecord
   def self.match_month
     return  where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%")
   end
+  
+
 
 
 end
