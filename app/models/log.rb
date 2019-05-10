@@ -28,10 +28,11 @@ class Log < ApplicationRecord
   def self.match_month
     return  where('start_time LIKE(?)', "#{Time.now.strftime('%Y-%m')}%")
   end
-  
 
+end
 
-
+def is_this_month(from_time)
+  return (from_time.gsub(/(.{3})$/, '') == Date.today.strftime('%Y-%m'))
 end
 
 
