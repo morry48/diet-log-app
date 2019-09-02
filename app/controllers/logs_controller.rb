@@ -5,7 +5,7 @@ class LogsController < ApplicationController
   before_action :set_date_nil_guard, only: [:index, :week_index]
   before_action :set_today_calorie, only: [:index, :week_index]
   before_action :set_count_month_days, only: [:index, :week_index]
-  
+
   def index
     @sum_this_month_calorie = @logs.match_month.sumkcal.to_i
     @calorie_parameter = (100*(@sum_this_month_calorie - @sum_today_calorie.to_f) / (2120*(Time.now.day-1).to_f)).to_i  if Time.now.day != 1
